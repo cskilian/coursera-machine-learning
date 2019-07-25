@@ -1,0 +1,3 @@
+These scripts are my solutions to the problem sets from Stanford's Machine Learning course offered on Coursera, reimplemented in Python and Numpy
+instead of Matlab. To run, refer to the comments in the script about command line arguments. The training dataset should be contained in a CSV file 
+with each row containing a training example, and the 1st to (n - 1)th columns containing the features and the nth column containing the output.

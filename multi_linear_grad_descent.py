@@ -16,15 +16,36 @@ def load(training_set, feature_count):
     return (X, y)
 
 def normalize(X, mu, sigma):
+    '''
+    This normalizes the values in the training set
+    :param X: matrix of the training data
+    :param mu: row vector of the mean of the training features
+    :param sigma: row vector of the standard deviation of the training features
+    :return: matrix of the training data after feature scaling
+    '''
     X = X - mu
     X = X / sigma
     return X
 
 def error(X, theta, y, m):
+    '''
+    This calculates the squared error
+    '''
     delta = np.matmul(X, theta) - y
     return np.matmul(delta.transpose(), delta) / (2 * m)
 
 def grad_descent(X, theta, y, m, alpha, epsilon):
+    '''
+    This is the gradient descent algorithm. We repeatedly calculate the squared error,
+    adjust the weights, calculate the error again, and quit when the error function has converged
+    :param X: matrix of the  training data with the constant terms contained in the 1st column
+    :param theta: matrix of the weights of the hypothesis function
+    :param y: column vector of the training data's output
+    :param m: scalar of the number of training examples
+    :param alpha: scalar of the learning rate
+    :param epsilon: scalar of the acceptable error boundary
+    :returns: the weights at a local minimum
+    '''
     while True:
         before_error = error(X, theta, y, m)
         # update thetas
@@ -39,6 +60,14 @@ def grad_descent(X, theta, y, m, alpha, epsilon):
     return theta
 
 def main():
+    '''
+    Arguments
+    --file -f: sets the path of the training set file
+    --alpha -a: sets the learning rate
+    --epsilon -e: sets the maximum delta between 2 error calculations, if the error functions
+    rate of change is smaller than this, we determine the squared error function has converged
+    --prediction -p: an array of inputs you want to make a prediction for after training the model
+    '''
     # init default parameters
     training_set = DEF_FNAME
     alpha = DEF_ALPHA
